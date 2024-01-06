@@ -1,43 +1,46 @@
 #include <iostream>
-#include <string>  
-using namespace std;
+#include <string>
+
+using std::string, std::cout, std::cin, std::endl;
 
 class ExceptionInvalidInput : public std::exception {
 private:
-    int y;
+  int y;
 
 public:
-    ExceptionInvalidInput(int value) : y(value) {}
+  ExceptionInvalidInput(int value) : y(value) {}
 
-    const char* what() const noexcept override {
-        std::string message = "Number nonpositive or zero: " + std::to_string(y);
-        return message.c_str();
-    }
+  const char *what() const noexcept override {
+    std::string message = "Number nonpositive or zero: " + std::to_string(y);
+    return message.c_str();
+  }
 };
 
 int gcd(int x, int y);
 
-int main()
-{
-    int m,n,result;
-    cout<<"Enter two non-positive integers\n";
-    try{
-        cin>>m>>n;
-        if(m<0 || m == 0) throw ExceptionInvalidInput(m);
-        if(n<0 || n == 0) throw ExceptionInvalidInput(m);
-    }
-    catch(ExceptionInvalidInput &e){
-        cout<<e.what()<<endl;
-    }
-    cout<<"Calculating GCD of "<<m<<" and "<<n<<" step by step: \n";
-    result=gcd(m,n);
-    cout<<"The GCD of "<<m<<" and "<<n<<" is "<<result<<endl;
+int main() {
+  int m, n, result;
 
-    return 0;
+  cout << "Enter two non-positive integers\n";
+  try {
+    cin >> m >> n;
+    if (m <= 0)
+      throw ExceptionInvalidInput(m);
+    if (n <= 0)
+      throw ExceptionInvalidInput(n);
+  } catch (ExceptionInvalidInput &e) {
+    cout << e.what() << endl;
+  }
+  cout << "Calculating GCD of " << m << " and " << n << " step by step: \n";
+  result = gcd(m, n);
+  cout << "The GCD of " << m << " and " << n << " is " << result << endl;
+
+  return 0;
 }
-int gcd(int x, int y){
-    if(y==0) return x;
-    int r = x % y;
-    cout<<x<<" = "<<y<<" * "<<x/y<<" + "<<x%y<<endl; 
-    return gcd(y,r);
+int gcd(int x, int y) {
+  if (y == 0)
+    return x;
+  int r = x % y;
+  cout << x << " = " << y << " * " << x / y << " + " << x % y << endl;
+  return gcd(y, r);
 }
