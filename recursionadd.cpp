@@ -3,7 +3,7 @@
 using std::cout, std::endl;
 int recurse(int *arr, int index, int size) {
   if (index == size) {
-    return arr[index - 1];
+    return 0;
   } else {
     return arr[index] + recurse(arr, index + 1, size);
   }
