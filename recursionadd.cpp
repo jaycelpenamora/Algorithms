@@ -2,12 +2,11 @@
 
 using std::cout, std::endl;
 int recurse(int *arr, int index, int sum, int size) {
-  int total = sum;
   if (index == size) {
-    return total;
+    return sum;
   } else {
-    total += arr[index];
-    return recurse(arr, index + 1, total, size);
+    sum += arr[index];
+    return recurse(arr, index + 1, sum, size);
   }
 }
 int main() {
