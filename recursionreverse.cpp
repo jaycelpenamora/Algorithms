@@ -14,5 +14,6 @@ int main() {
   int size{10};
   int *arr = new int[size]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   recurse(arr, 0, size);
+  delete[] arr;
   return 0;
 }
