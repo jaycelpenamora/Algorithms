@@ -1,5 +1,4 @@
 #include <iostream>
-
 bool binary_search(int *arr, int target, int low, int high) {
   if (low > high)
     return false;
